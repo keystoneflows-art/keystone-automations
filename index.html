@@ -1,99 +1,452 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en" data-type="service" data-radius="soft" data-buttons="solid" data-motion>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Keystone Automations | AI DM Agent</title>
-<meta name="description" content="Keystone Automations builds AI agents that answer your Instagram and Messenger DMs 24/7, in Darija, French, Arabic and English.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Keystone Automations: AI invoice data entry for accounting firms</title>
+<meta name="description" content="Invoices emailed as PDFs, scans or phone photos, read by AI, checked and written to your Google Sheet, Excel or Airtable. Free test on 10 of your invoices.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Keystone Automations: AI invoice data entry">
+<meta property="og:description" content="PDFs, scans and phone photos read, checked and filed to your spreadsheet. Anything unclear is flagged, never guessed.">
+<meta property="og:image" content="https://keystoneflows-art.github.io/keystone-automations/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f6f8fd">
+<link rel="canonical" href="https://keystoneflows-art.github.io/keystone-automations/">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<link rel="stylesheet" href="assets/moments/pinned-chapters/moment.css">
 <style>
-  :root{
-    --navy:#07183A; --royal:#1D4ED8; --azure:#4C8DFF; --ice:#EEF4FF;
-    --ink:#0B1220; --muted:#4A5873; --line:#D6E2FB; --bg:#FFFFFF;
+:root {
+  /* Keystone brand: Deep Navy #07183A, Royal Blue #1D4ED8, Azure #4C8DFF, Ice #EEF4FF */
+  --p-bg: #f6f8fd; --p-surface: #eaf0fc; --p-ink: #07183a; --p-muted: #3e4a63;
+  --p-accent: #1d4ed8; --p-accent-ink: #ffffff; --p-action: #1d4ed8; --p-action-ink: #ffffff;
+  --p-inv-bg: #07183a; --p-inv-surface: #0d2352; --p-inv-ink: #eef4ff; --p-inv-muted: #a9bbe6;
+  --p-inv-accent: #4c8dff; --p-inv-accent-ink: #07183a; --p-inv-action: #4c8dff; --p-inv-action-ink: #07183a;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 500;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.035em;
+}
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/pinned-chapters/moment.js">
+<style>
+  /* ---------- the drawn windows: real outputs from the demo builds, as live HTML ---------- */
+  .win { background: #fff; border-radius: 16px; box-shadow: 0 1px 2px rgb(7 24 58 / .06), 0 18px 40px -12px rgb(7 24 58 / .22); overflow: hidden; width: 100%; font-family: var(--font-text); color: var(--p-ink); text-align: left; }
+  .win__bar { display: flex; align-items: center; gap: 8px; padding: 12px 18px; background: var(--p-surface); font: 500 14px/1 var(--font-text); }
+  .win__bar i { width: 9px; height: 9px; border-radius: 50%; background: #c6d3ee; }
+  .win__bar span { margin-left: 8px; }
+  .win__bar img { width: 16px; height: 16px; margin-left: auto; }
+  .win table { width: 100%; border-collapse: collapse; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .win th { text-align: left; font: 600 11px/1 var(--font-text); letter-spacing: .06em; text-transform: uppercase; color: var(--p-muted); padding: 14px 18px 10px; border-bottom: 1px solid #e3e9f6; }
+  .win td { padding: 13px 18px; border-bottom: 1px solid #edf1f9; vertical-align: middle; }
+  .win td.num, .win th.num { text-align: right; }
+  .win td b { font-weight: 600; display: block; line-height: 1.25; }
+  .win td small { color: var(--p-muted); font-size: 13px; }
+  .win__foot { padding: 12px 18px; background: #f3f6fd; color: var(--p-muted); font-size: 13.5px; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font: 600 12px/1.2 var(--font-text); white-space: nowrap; }
+  .pill--ok { background: #dcf5e6; color: #0d6b38; }
+  .pill--review { background: #fff1cc; color: #7a4b00; }
+  .pill--dup { background: #fde2e2; color: #9b1c1c; }
+  .pill--blue { background: #dbe7ff; color: #1a3fa8; }
+  .pill--grey { background: #e7eaf0; color: #4a5873; }
+  .win .row-new td { animation: rowIn 900ms cubic-bezier(.16,1,.3,1) both; animation-delay: 1.1s; }
+  @keyframes rowIn { from { background: #e8f0ff; } to { background: transparent; } }
+  .hero__media { display: flex; align-items: center; justify-content: center; background: var(--p-surface); padding: clamp(20px, 3vw, 44px); }
+  .hero__media .win { max-width: 560px; }
+  .ly-float { max-width: 300px; }
+  .ly-float__title { font-size: 15px; }
+
+  /* extraction card (step 2) */
+  .extract { padding: 6px 0 0; }
+  .extract dl { display: grid; grid-template-columns: 1fr auto; margin: 0; }
+  .extract dt, .extract dd { padding: 11px 18px; border-bottom: 1px solid #edf1f9; margin: 0; font-size: 15px; }
+  .extract dt { color: var(--p-muted); }
+  .extract dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .extract .check { display: flex; gap: 10px; align-items: center; padding: 14px 18px; background: #eefaf3; color: #0d6b38; font-weight: 600; font-size: 14.5px; }
+  .extract .check svg { flex: none; }
+
+  /* inbox list (step 1, services) */
+  .files li { display: flex; align-items: center; gap: 12px; padding: 13px 18px; border-bottom: 1px solid #edf1f9; font-size: 15px; }
+  .files li .ftype { width: 34px; height: 40px; border-radius: 6px; display: grid; place-items: center; font: 700 10px/1 var(--font-text); color: #fff; flex: none; }
+  .ftype--pdf { background: #d93a3a; } .ftype--jpg { background: #2f7de1; }
+  .files li b { font-weight: 600; display: block; }
+  .files li small { color: var(--p-muted); font-size: 13px; }
+  .files li .pill { margin-left: auto; }
+  .files { list-style: none; margin: 0; padding: 0; }
+
+  /* phone alert (step 3) */
+  .alert { margin: 16px 18px 18px; padding: 14px 16px; border-radius: 14px; background: #eef4ff; font-size: 14.5px; line-height: 1.45; }
+  .alert b { display: block; margin-bottom: 2px; }
+  .stackwin { display: grid; gap: 16px; width: 100%; max-width: 560px; }
+
+  /* services peek frame: the windows on the lit surface */
+  #services .frame { background: var(--p-surface); display: flex; align-items: center; justify-content: center; padding: clamp(20px, 3vw, 48px); }
+  #services .frame > .peek-pane { width: 100%; max-width: 540px; }
+  #services .frame > .peek-pane[hidden] { display: none; }
+  .rows__value { white-space: nowrap; }
+
+  /* tools strip */
+  .tools { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; margin-top: var(--s-6, 32px); color: var(--p-muted); font-size: 15px; }
+  .tools span { display: inline-flex; align-items: center; gap: 8px; }
+  .tools img { width: 22px; height: 22px; }
+
+  /* demo video */
+  .demo-frame { border-radius: var(--r-lg, 20px); overflow: hidden; background: var(--p-inv-bg); box-shadow: 0 24px 60px -24px rgb(7 24 58 / .45); }
+  .demo-frame video { display: block; width: 100%; aspect-ratio: 1280 / 630; background: #07183a; }
+
+  .demo-facts { display: grid; grid-template-columns: repeat(4, 1fr); margin: var(--s-6, 32px) 0 0; }
+  .demo-facts div { padding: 18px 20px 0 0; }
+  .demo-facts dt { font-size: 14px; color: var(--p-muted); }
+  .demo-facts dd { margin: 4px 0 0; font: 500 18px/1.3 var(--font-display); }
+  @media (max-width: 767px) { .demo-facts { grid-template-columns: 1fr 1fr; gap: 0 12px; } }
+  /* safety rules */
+  .rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .rules li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 20px 0; border-top: 1px solid rgb(7 24 58 / .1); }
+  .rules li:last-child { border-bottom: 1px solid rgb(7 24 58 / .1); }
+  .rules h3 { font-size: 19px; margin: 0 0 4px; }
+  .rules p { margin: 0; color: var(--p-muted); }
+  .rules svg { margin-top: 3px; }
+
+  /* about */
+  .about-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .about-facts div { padding: 20px 20px 0 0; }
+  .about-facts dt { font-size: 14px; color: var(--p-muted); }
+  .about-facts dd { margin: 4px 0 0; font: 500 19px/1.3 var(--font-display); }
+  @media (max-width: 767px) { .about-facts { grid-template-columns: 1fr; } }
+
+  /* data section */
+  .data-note { max-width: 70ch; color: var(--p-muted); }
+  .data-note p + p { margin-top: 12px; }
+
+  #how { --ground-bg: var(--p-surface); }
+  @media (max-width: 639px) { .nav__actions { display: none; } .nav__logo { font-size: 17px; } }
+  .rows__name small { display: block; margin-top: 4px; font-size: 15px; color: var(--p-muted); font-weight: 400; }
+  .form .field--full { grid-column: 1 / -1; }
+  .about-facts { grid-template-columns: repeat(3, 1fr); margin-top: var(--s-6, 32px); }
+  .about-facts dd { font-size: 17px; }
+  @media (max-width: 767px) { .about-facts { grid-template-columns: 1fr 1fr; } .about-facts div:last-child { grid-column: 1 / -1; } }
+  .ground-inverse .t-small.muted, .ground-inverse .footer__legal { color: var(--p-inv-muted); }
+  .ground-inverse ::selection { background: #4c8dff; color: #07183a; }
+  video:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 4px; }
+  .services-more { margin-top: 20px; grid-row: 2; }
+  #services .frame { grid-row: 1 / span 2; }
+  .faq { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; align-items: start; }
+  @media (max-width: 899px) { .faq { grid-template-columns: 1fr; } }
+  @media (max-width: 639px) {
+    .win { font-size: 14px; }
+    .win table { table-layout: fixed; font-size: 13.5px; }
+    .win th, .win td { padding-left: 12px; padding-right: 12px; }
+    .win th:nth-child(2), .win td:nth-child(2) { display: none; }
+    .hero__media { padding: 14px; }
+    .ly-float { display: none; }
+    .rows li { flex-wrap: wrap; }
+    .rows__value { font-size: 15px; }
+    #services .frame, .services-more { grid-row: auto; }
+    .tools { gap: 10px 18px; font-size: 14px; }
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Cairo',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
-  header{background:var(--navy);color:#fff}
-  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
-  .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:.3px}
-  .brand span{color:var(--azure)}
-  nav a{color:#C9D8FF;text-decoration:none;font-size:15px}
-  .hero{padding:56px 0 72px}
-  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,5vw,48px);line-height:1.15;max-width:720px}
-  .hero h1 em{font-style:normal;color:var(--azure)}
-  .hero p{margin-top:18px;max-width:620px;color:#C9D8FF;font-size:18px}
-  .ar{direction:rtl;text-align:right;margin-top:14px;color:#C9D8FF;font-size:18px}
-  .cta{display:inline-block;margin-top:28px;background:var(--royal);color:#fff;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700}
-  section{padding:56px 0}
-  h2{font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--navy);margin-bottom:22px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-  .card{background:var(--ice);border:1px solid var(--line);border-radius:14px;padding:20px}
-  .card h3{font-family:'Space Grotesk',sans-serif;color:var(--royal);font-size:18px;margin-bottom:6px}
-  .card p{color:var(--muted);font-size:15px}
-  ol{padding-left:20px;color:var(--muted)}
-  ol li{margin-bottom:10px}
-  ol strong{color:var(--ink)}
-  .data{background:var(--ice);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .data p{color:var(--muted);max-width:760px;margin-bottom:10px}
-  footer{background:var(--navy);color:#9FB3E6;padding:28px 0;font-size:14px}
-  footer a{color:#fff}
-  footer .row{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+  ::selection { background: #c9dafd; color: #07183a; }
+  textarea { min-height: 120px; resize: vertical; }
+  @media (prefers-reduced-motion: reduce) { .win .row-new td { animation: none; } }
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <nav>
-      <div class="brand">Keystone <span>Automations</span></div>
-      <a href="privacy.html">Privacy Policy</a>
+<!-- type: service (an automation consultancy: people are hired)
+     deal: hero split (layout/deal.mjs), nav plain, close type, footer columns, rhythm surface-pairs, buttons solid, mark initial
+     palette: the client's own brand (navy, royal blue, azure, ice), type Space Grotesk (brand) with Hanken Grotesk (dealt)
+     moments: pinned-chapters on #how (moments.mjs pick --page service) -->
+
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top"><span class="mark mark--initial" aria-hidden="true">K</span>Keystone Automations</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="#how">How it works</a></div>
+      <div class="nav__item"><a class="nav__link" href="#demo">Demo</a></div>
+      <div class="nav__item"><a class="nav__link" href="#services">Services</a></div>
+      <div class="nav__item"><a class="nav__link" href="#questions">Questions</a></div>
     </nav>
-    <div class="hero">
-      <h1>Chaque DM répondu en <em>3 secondes</em>, 24h/24.</h1>
-      <p>Keystone Automations installe un agent IA qui répond aux messages Instagram de votre boutique : prix, tailles, stock, livraison. Il parle Darija, français, arabe et anglais, et vous alerte quand un client est prêt à commander.</p>
-      <p class="ar">مساعد ذكي يرد على رسائل متجرك في الإنستغرام فورًا، ليلًا ونهارًا، بلهجة زبائنك.</p>
-      <a class="cta" href="mailto:keystone.flows@gmail.com">Contact : keystone.flows@gmail.com</a>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="#contact">Request a free test</a>
     </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </header>
 
-<section>
+<main id="top">
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text grid hero__grid">
+      <div class="hero__text span-5">
+        <h1 id="hero-h">Invoice data entry for accountants</h1>
+        <p class="hero__lead">Clients email PDFs, scans and phone photos. AI reads each invoice, checks the math and writes it to your Google Sheet, Excel or Airtable. Anything unclear is flagged, never guessed.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#contact">Request a free test<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+          <a class="btn btn--secondary" href="#demo">Watch the demo</a>
+        </div>
+        <dl class="hero-facts">
+          <div><dt>Free test</dt><dd>10 of your invoices</dd></div>
+          <div><dt>Setup</dt><dd>3 to 7 days</dd></div>
+          <div><dt>Runs on</dt><dd>Your own accounts</dd></div>
+        </dl>
+      </div>
+      <div class="hero__media span-6 start-7">
+        <div class="win" role="img" aria-label="The invoice log: two invoices filed as ok, a newsletter sent to review, and a repeated invoice marked as a duplicate">
+          <div class="win__bar"><i></i><i></i><i></i><span>Invoice_Log</span><img src="assets/icons/brand/sheets.svg" alt=""></div>
+          <table>
+            <thead><tr><th>Supplier</th><th>Invoice</th><th class="num">Total</th><th class="num">Status</th></tr></thead>
+            <tbody>
+              <tr><td><b>Meridian Office Supply</b><small>PDF</small></td><td>MOS-1188</td><td class="num">1,515.50</td><td class="num"><span class="pill pill--ok">Filed</span></td></tr>
+              <tr><td><b>Blue Harbor</b><small>Phone photo</small></td><td>BH-0999</td><td class="num">2,625.00</td><td class="num"><span class="pill pill--ok">Filed</span></td></tr>
+              <tr><td><b>Newsletter.pdf</b><small>Not an invoice</small></td><td>–</td><td class="num">–</td><td class="num"><span class="pill pill--review">Review</span></td></tr>
+              <tr class="row-new"><td><b>Meridian Office Supply</b><small>Sent twice</small></td><td>MOS-1188</td><td class="num">1,515.50</td><td class="num"><span class="pill pill--dup">Duplicate</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ly-float">
+          <div class="ly-float__row"><span class="ly-live">Just now</span><span>Telegram</span></div>
+          <div class="ly-float__title">MOS-1188 arrived twice. The copy went to Review.</div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" style="--h: 2; --hm: 2" id="how" data-moment="pinned-chapters" aria-labelledby="how-h">
+    <div class="wrap mo-pc__grid">
+      <div class="mo-pc__text">
+        <h2 id="how-h">How an invoice gets filed. <span class="muted">No typing, no guessing.</span></h2>
+        <ol class="mo-pc__steps">
+          <li class="mo-pc__step">
+            <h3>Invoices collected from email or Drive</h3>
+            <p>Clients email PDFs, scans or phone photos, or you drop them in a Drive folder. Each one is picked up within a minute.</p>
+            <figure class="mo-pc__visual mo-pc__visual--lit" role="img" aria-label="Three files waiting: two PDF invoices and one phone photo">
+              <div class="win">
+                <div class="win__bar"><i></i><i></i><i></i><span>Invoices inbox</span><img src="assets/icons/brand/gmail.svg" alt=""></div>
+                <ul class="files">
+                  <li><span class="ftype ftype--pdf">PDF</span><span><b>meridian_march.pdf</b><small>from accounts@ a client</small></span><span class="pill pill--blue">Picked up</span></li>
+                  <li><span class="ftype ftype--jpg">JPG</span><span><b>IMG_4418.jpg</b><small>phone photo, slightly tilted</small></span><span class="pill pill--blue">Picked up</span></li>
+                  <li><span class="ftype ftype--pdf">PDF</span><span><b>newsletter_nov.pdf</b><small>a supplier mailing</small></span><span class="pill pill--blue">Picked up</span></li>
+                </ul>
+              </div>
+            </figure>
+          </li>
+          <li class="mo-pc__step">
+            <h3>Fields read, math checked</h3>
+            <p>AI pulls the supplier, date, number, VAT and total, then checks that subtotal plus tax equals the total.</p>
+            <figure class="mo-pc__visual mo-pc__visual--lit" role="img" aria-label="Fields read from one invoice, with the subtotal plus tax check passed">
+              <div class="win extract">
+                <div class="win__bar"><i></i><i></i><i></i><span>IMG_4418.jpg, read</span></div>
+                <dl>
+                  <dt>Supplier</dt><dd>Blue Harbor</dd>
+                  <dt>Invoice number</dt><dd>BH-0999</dd>
+                  <dt>Date</dt><dd>2 Nov 2026</dd>
+                  <dt>Subtotal</dt><dd>2,187.50</dd>
+                  <dt>VAT 20%</dt><dd>437.50</dd>
+                  <dt>Total</dt><dd>2,625.00</dd>
+                </dl>
+                <div class="check"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#16a34a"/><path d="M5.2 9.2l2.4 2.4 5-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>2,187.50 + 437.50 = 2,625.00</div>
+              </div>
+            </figure>
+          </li>
+          <li class="mo-pc__step">
+            <h3>Filed to your sheet, or flagged</h3>
+            <p>Clean invoices land in your sheet. Duplicates and anything unclear go to Review, with an alert on your phone.</p>
+            <figure class="mo-pc__visual mo-pc__visual--lit" role="img" aria-label="The newsletter sent to Review and a phone alert explaining why">
+              <div class="win">
+                <div class="win__bar"><i></i><i></i><i></i><span>Review folder</span><img src="assets/icons/brand/telegram.svg" alt=""></div>
+                <ul class="files">
+                  <li><span class="ftype ftype--pdf">PDF</span><span><b>newsletter_nov.pdf</b><small>No invoice number, no total</small></span><span class="pill pill--review">Review</span></li>
+                </ul>
+                <div class="alert"><b>Needs a look</b>newsletter_nov.pdf does not look like an invoice. Nothing was written to the sheet.</div>
+              </div>
+            </figure>
+          </li>
+        </ol>
+      </div>
+      <div class="mo-pc__visuals frame"></div>
+    </div>
+  </section>
+
+  <section class="section" id="demo" aria-labelledby="demo-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="demo-h">The 69-second demo. <span class="muted">Real files, recorded on my own setup.</span></h2>
+      </div>
+      <div class="demo-frame">
+        <video controls preload="none" playsinline poster="media/invoice-demo-poster.jpg" aria-label="Demo: invoices dropped in a folder are read, checked and logged, with a duplicate and a non-invoice flagged">
+          <source src="media/invoice-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <dl class="demo-facts">
+        <div><dt>A clean PDF</dt><dd>Read and filed</dd></div>
+        <div><dt>A phone photo</dt><dd>Read by AI vision</dd></div>
+        <div><dt>A newsletter</dt><dd>Sent to Review</dd></div>
+        <div><dt>The same invoice twice</dt><dd>Caught as a duplicate</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section g2m" id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="services-h">Three automations. <span class="muted">Fixed prices, from $30.</span></h2></div>
+      <div class="grid grid--top fill" data-peek>
+        <ul class="rows span-6">
+          <li data-peek-to="invoice" tabindex="0"><span class="rows__name">Invoice data entry<small>PDFs, scans and photos into your sheet, with math and duplicate checks</small></span><span class="rows__value">from $39</span></li>
+          <li data-peek-to="email" tabindex="0"><span class="rows__name">Email triage and replies<small>Sorts the inbox and answers simple questions from your own FAQ</small></span><span class="rows__value">from $30</span></li>
+          <li data-peek-to="lead" tabindex="0"><span class="rows__name">Lead capture and follow-up<small>Scores each form lead, adds it to HubSpot, follows up until they reply</small></span><span class="rows__value">from $35</span></li>
+        </ul>
+        <p class="services-more span-6"><a class="link" href="https://www.fiverr.com/medjd_benh" rel="noopener" target="_blank">Compare the packages on Fiverr</a></p>
+        <div class="frame frame--fill span-6 start-7">
+          <div class="peek-pane" data-peek-for="invoice">
+            <div class="win" role="img" aria-label="Invoice log with filed, review and duplicate rows">
+              <div class="win__bar"><i></i><i></i><i></i><span>Invoice_Log</span><img src="assets/icons/brand/sheets.svg" alt=""></div>
+              <table><thead><tr><th>Supplier</th><th class="num">Total</th><th class="num">Status</th></tr></thead>
+              <tbody><tr><td><b>Meridian Office Supply</b></td><td class="num">1,515.50</td><td class="num"><span class="pill pill--ok">Filed</span></td></tr>
+              <tr><td><b>Blue Harbor</b></td><td class="num">2,625.00</td><td class="num"><span class="pill pill--ok">Filed</span></td></tr>
+              <tr><td><b>Newsletter.pdf</b></td><td class="num">–</td><td class="num"><span class="pill pill--review">Review</span></td></tr></tbody></table>
+            </div>
+          </div>
+          <div class="peek-pane" data-peek-for="email" hidden>
+            <div class="win" role="img" aria-label="An inbox where each email has a label and a reply status">
+              <div class="win__bar"><i></i><i></i><i></i><span>Inbox</span><img src="assets/icons/brand/gmail.svg" alt=""></div>
+              <ul class="files">
+                <li><span><b>Quote for 200 units</b><small>Draft ready, owner alerted</small></span><span class="pill pill--blue">Quote</span></li>
+                <li><span><b>Delivery time to France</b><small>Answered from the FAQ</small></span><span class="pill pill--ok">Replied</span></li>
+                <li><span><b>Where is my refund?</b><small>Customer upset, held for you</small></span><span class="pill pill--review">Draft</span></li>
+                <li><span><b>70% off SEO package</b><small>Labelled, ignored</small></span><span class="pill pill--grey">Spam</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="peek-pane" data-peek-for="lead" hidden>
+            <div class="win" role="img" aria-label="New leads scored hot, warm and cold with a reason">
+              <div class="win__bar"><i></i><i></i><i></i><span>New leads</span><img src="assets/icons/brand/hubspot.svg" alt=""></div>
+              <table><thead><tr><th>Lead</th><th>Reason</th><th class="num">Score</th></tr></thead>
+              <tbody><tr><td><b>Sarah W.</b><small>Bookkeeping, Leeds</small></td><td>Budget and deadline</td><td class="num"><span class="pill pill--dup">Hot</span></td></tr>
+              <tr><td><b>James P.</b><small>Retail store</small></td><td>Interested, no date</td><td class="num"><span class="pill pill--review">Warm</span></td></tr>
+              <tr><td><b>Info request</b></td><td>Just browsing</td><td class="num"><span class="pill pill--blue">Cold</span></td></tr></tbody></table>
+              <div class="win__foot">Saved to the sheet, sent to HubSpot, follow-up booked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5">
+        <div class="section-head">
+          <h2 id="about-h">Built to stop, not to guess.</h2>
+          <p>I am Mejd, an industrial risk engineer turned automation builder. I design every workflow around what goes wrong with real files, test it on yours, and hand over a short video.</p>
+        </div>
+        <dl class="about-facts">
+          <div><dt>Background</dt><dd>Master's in industrial risk</dd></div>
+          <div><dt>Languages</dt><dd>English, French, Arabic</dd></div>
+          <div><dt>Hire me on</dt><dd><a class="link" href="https://www.upwork.com/freelancers/~01124a833696475364" rel="noopener" target="_blank">Upwork</a> or <a class="link" href="https://www.fiverr.com/medjd_benh" rel="noopener" target="_blank">Fiverr</a></dd></div>
+        </dl>
+      </div>
+      <ul class="rules span-6 start-7">
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#dbe7ff"/><path d="M6.5 11.2l3 3 6-6" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Math checked on every invoice</h3><p>If subtotal plus tax does not equal the total, the invoice goes to Review.</p></div></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#dbe7ff"/><path d="M6.5 11.2l3 3 6-6" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Duplicates caught by invoice number</h3><p>A client who sends the same invoice twice never gets it booked twice.</p></div></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#dbe7ff"/><path d="M6.5 11.2l3 3 6-6" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Error alerts on your phone</h3><p>A failed step retries on its own, and if it still fails you get an alert.</p></div></li>
+      </ul>
+      <div class="span-12"><div class="tools" aria-label="Tools I work with">
+        <span><img src="assets/icons/brand/n8n.svg" alt="">n8n</span>
+        <span><img src="assets/icons/brand/make.svg" alt="">Make</span>
+        <span><img src="assets/icons/brand/zapier.svg" alt="">Zapier</span>
+        <span><img src="assets/icons/brand/gmail.svg" alt="">Gmail</span>
+        <span><img src="assets/icons/brand/sheets.svg" alt="">Google Sheets</span>
+        <span><img src="assets/icons/brand/drive.svg" alt="">Google Drive</span>
+        <span><img src="assets/icons/brand/airtable.svg" alt="">Airtable</span>
+        <span><img src="assets/icons/brand/hubspot.svg" alt="">HubSpot</span>
+        <span><img src="assets/icons/brand/telegram.svg" alt="">Telegram</span>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="section" style="--hm: 2" id="questions" aria-labelledby="questions-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="questions-h">Questions</h2></div>
+      <div class="faq">
+        <div class="faq__item"><h3>What does the free test include?</h3><p>Send 10 real invoices. I run them through the automation and send back the filled sheet, including anything it flagged.</p></div>
+        <div class="faq__item"><h3>Whose accounts does it run on?</h3><p>Yours. It is installed on your own n8n, Make or Google account, so the data and the automation stay with you.</p></div>
+        <div class="faq__item"><h3>Do you see my passwords?</h3><p>No. You sign in to each tool yourself on a short screen-share, and you can revoke access at any time.</p></div>
+        <div class="faq__item"><h3>What if an invoice is read wrong?</h3><p>Totals are checked against subtotal and tax, and anything that fails goes to a Review folder with an alert.</p></div>
+        <div class="faq__item" id="data"><h3>How is my Google data used?</h3><p>Only to read the files and emails the automation processes and write results to your own sheets. It is never sold or used for ads, and use of Google API data follows the <a class="link" href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener" target="_blank">Google API Services User Data Policy</a>, including Limited Use. Details in the <a class="link" href="privacy.html">privacy policy</a>.</p></div>
+        <div class="faq__item"><h3>Can it write to Xero or QuickBooks?</h3><p>Not yet as a standard package. Google Sheets, Excel and Airtable are standard; other tools are quoted after the free test.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
   <div class="wrap">
-    <h2>Ce que fait l'agent</h2>
-    <div class="grid">
-      <div class="card"><h3>Répond tout de suite</h3><p>Prix, disponibilité, tailles et livraison, à partir de votre propre catalogue.</p></div>
-      <div class="card"><h3>Parle comme vos clients</h3><p>Darija, français, arabe et anglais. Il répond dans la langue du client.</p></div>
-      <div class="card"><h3>Vous passe la main</h3><p>Commande, réclamation ou question sans réponse : vous recevez une alerte Telegram.</p></div>
-      <div class="card"><h3>N'invente rien</h3><p>Il répond uniquement avec vos données. S'il n'est pas sûr, il vous laisse répondre.</p></div>
+    <div class="closing__cta">
+      <div class="grid grid--top">
+        <div class="section-head span-5">
+          <h2 id="close-h">Request a free test</h2>
+          <p>Tell me about your invoices. I reply within one working day with how to send the 10 files.</p>
+        </div>
+        <form class="form span-6 start-7" action="mailto:keystone.flows@gmail.com" method="post" enctype="text/plain" data-endpoint="https://formsubmit.co/ajax/keystone.flows@gmail.com" data-sent="Your free test request is in. I reply within one working day." novalidate>
+          <input type="hidden" name="_subject" value="Free test request from the website">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field"><label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+            <p class="field__error" id="f-name-err" hidden>Write your name.</p></div>
+          <div class="field"><label for="f-email">Work email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
+            <p class="field__error" id="f-email-err" hidden>Write an email address with an @, like name@firm.co.uk.</p></div>
+          <div class="field"><label for="f-firm">Firm</label>
+            <input id="f-firm" name="firm" type="text" autocomplete="organization" aria-describedby="f-firm-err">
+            <p class="field__error" id="f-firm-err" hidden>Write the name of your firm.</p></div>
+          <div class="field"><label for="f-volume">Invoices a month</label>
+            <input id="f-volume" name="invoices_per_month" type="text" inputmode="numeric" autocomplete="off" aria-describedby="f-volume-err">
+            <p class="field__error" id="f-volume-err" hidden>Write a rough number, like 300.</p></div>
+          <div class="field field--full"><label for="f-msg">Where the data should go</label>
+            <textarea id="f-msg" name="message" rows="4" required aria-describedby="f-msg-err"></textarea>
+            <p class="field__error" id="f-msg-err" hidden>Write a line about your setup, like "a Google Sheet per client".</p></div>
+          <div class="btn-row"><button class="btn btn--primary" type="submit">Request a free test</button></div>
+          <p class="form__status" role="status" data-form-status></p>
+          <p class="t-small muted">Your details are used only to reply to you.</p>
+        </form>
+      </div>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><span class="mark mark--initial" aria-hidden="true">K</span>Keystone Automations</a>
+          <p class="footer__lede">AI automations for invoices, email and leads, built on your own tools.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="#how">How it works</a></li><li><a href="#demo">Demo</a></li><li><a href="#services">Services</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="#about">About</a></li><li><a href="#questions">Questions</a></li><li><a href="#data">Your data</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Hire</h3><ul><li><a href="https://www.upwork.com/freelancers/~01124a833696475364" rel="noopener" target="_blank">Upwork</a></li><li><a href="https://www.fiverr.com/medjd_benh" rel="noopener" target="_blank">Fiverr</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Keystone Automations &nbsp; <a href="privacy.html">Privacy</a></span>
+        <span>Product names and logos are trademarks of their owners</span>
+      </div>
     </div>
   </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <h2>Comment ça marche</h2>
-    <ol>
-      <li><strong>Vous envoyez votre catalogue</strong> : produits, prix, frais de livraison, politique d'échange.</li>
-      <li><strong>Nous installons l'agent</strong> sur votre compte Instagram et le testons sur vos produits.</li>
-      <li><strong>Essai gratuit</strong> : vous voyez les vraies conversations qu'il a gérées, puis vous décidez.</li>
-    </ol>
-  </div>
-</section>
-
-<section class="data">
-  <div class="wrap">
-    <h2>How this service uses Google data</h2>
-    <p>Keystone Automations connects to Google Sheets with the shop owner's permission. The agent reads the shop's own product and business-information sheet to answer customer questions, and writes a log of conversations it handled to that same spreadsheet.</p>
-    <p>We access only the spreadsheets used to run the agent. We do not sell Google user data, use it for advertising, or share it with third parties. Full details are in our <a href="privacy.html">Privacy Policy</a>.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap row">
-    <div>© 2026 Keystone Automations · Algeria</div>
-    <div><a href="privacy.html">Privacy Policy</a> · <a href="mailto:keystone.flows@gmail.com">keystone.flows@gmail.com</a></div>
-  </div>
 </footer>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="assets/moments/moments.js"></script>
 </body>
 </html>

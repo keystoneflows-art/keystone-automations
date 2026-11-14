@@ -1,90 +1,126 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="service" data-radius="soft" data-buttons="solid" data-motion>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy | Keystone Automations</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy policy | Keystone Automations</title>
+<meta name="description" content="What data Keystone Automations handles, why, how Google user data is used, and how to ask for deletion.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f6f8fd">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
 <style>
-  :root{--navy:#07183A;--royal:#1D4ED8;--azure:#4C8DFF;--ice:#EEF4FF;--ink:#0B1220;--muted:#4A5873;--line:#D6E2FB}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Cairo',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.7}
-  .wrap{max-width:780px;margin:0 auto;padding:0 20px}
-  header{background:var(--navy);color:#fff;padding:20px 0}
-  header a{color:#fff;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px}
-  header a span{color:var(--azure)}
-  main{padding:44px 0 64px}
-  h1{font-family:'Space Grotesk',sans-serif;color:var(--navy);font-size:34px;line-height:1.2}
-  .date{color:var(--muted);margin:8px 0 28px}
-  h2{font-family:'Space Grotesk',sans-serif;color:var(--royal);font-size:20px;margin:30px 0 8px}
-  p,li{color:#24324D}
-  ul{padding-left:22px;margin:8px 0}
-  li{margin-bottom:6px}
-  .box{background:var(--ice);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
-  a{color:var(--royal)}
-  footer{background:var(--navy);color:#9FB3E6;padding:22px 0;font-size:14px}
-  footer a{color:#fff}
+:root {
+  --p-bg: #f6f8fd; --p-surface: #eaf0fc; --p-ink: #07183a; --p-muted: #4a5873;
+  --p-accent: #1d4ed8; --p-accent-ink: #ffffff; --p-action: #1d4ed8; --p-action-ink: #ffffff;
+  --p-inv-bg: #07183a; --p-inv-surface: #0d2352; --p-inv-ink: #eef4ff; --p-inv-muted: #a9bbe6;
+  --p-inv-accent: #4c8dff; --p-inv-accent-ink: #07183a; --p-inv-action: #4c8dff; --p-inv-action-ink: #07183a;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 500; --display-tracking: -0.03em; --display-tracking-xl: -0.035em;
+}
+.policy { max-width: 72ch; padding: 140px 0 96px; }
+.policy h1 { font-size: clamp(36px, 5vw, 56px); margin-bottom: 8px; }
+.policy .date { color: var(--p-muted); margin-bottom: 40px; }
+.policy h2 { font-size: 24px; margin: 44px 0 10px; }
+.policy p, .policy li { color: #24324d; line-height: 1.7; }
+.policy p + p { margin-top: 12px; }
+.policy ul { padding-left: 22px; margin: 10px 0; }
+.policy li { margin-bottom: 6px; }
+.policy .box { background: var(--p-surface); border-radius: 14px; padding: 18px 22px; margin: 14px 0; }
+.policy a { color: var(--p-accent); text-underline-offset: 3px; }
+::selection { background: #c9dafd; color: #07183a; }
 </style>
 </head>
 <body>
-<header><div class="wrap"><a href="index.html">Keystone <span>Automations</span></a></div></header>
-<main class="wrap">
-  <h1>Privacy Policy</h1>
-  <p class="date">Last updated: 17 October 2026</p>
-
-  <p>Keystone Automations ("we", "us") builds and operates AI assistants that answer direct messages for online shops. This policy explains what data our service handles, why, and how it is protected. It applies to our website and to the assistant we install for our clients (the "Service").</p>
-
-  <h2>1. Who we are</h2>
-  <p>Keystone Automations is an independent automation service based in Algeria. Contact: <a href="mailto:keystone.flows@gmail.com">keystone.flows@gmail.com</a>.</p>
-
-  <h2>2. Data we handle</h2>
-  <ul>
-    <li><strong>Shop data from our clients:</strong> product names, prices, stock, delivery terms and similar business information the shop provides to us.</li>
-    <li><strong>Customer messages:</strong> the text of messages that the shop's customers send to the shop on Instagram or Facebook Messenger, the sender's platform ID, and the assistant's replies.</li>
-    <li><strong>Google Sheets data:</strong> the contents of the specific spreadsheets the shop owner authorizes us to use (see section 3).</li>
-  </ul>
-  <p>We do not ask for, and the Service is not designed to collect, payment card details, passwords or government ID numbers.</p>
-
-  <h2>3. How we use Google user data</h2>
-  <div class="box">
-    <p>When a shop owner connects Google Sheets, the Service uses the Google Sheets API to:</p>
-    <ul>
-      <li><strong>read</strong> the shop's product and business-information sheets, so the assistant can answer customer questions accurately;</li>
-      <li><strong>write</strong> a log row for each conversation the assistant handled (time, message, reply, intent) to the same spreadsheet, so the owner can review it.</li>
-    </ul>
-    <p>We access only the spreadsheets used to run the assistant. Google user data is used solely to provide this Service to the shop that authorized it.</p>
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="index.html"><span class="mark mark--initial" aria-hidden="true">K</span>Keystone Automations</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="index.html#how">How it works</a></div>
+      <div class="nav__item"><a class="nav__link" href="index.html#services">Services</a></div>
+    </nav>
+    <div class="nav__actions"><a class="btn btn--primary" href="index.html#contact">Request a free test</a></div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
-  <p>Keystone Automations' use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. We do not:</p>
-  <ul>
-    <li>sell Google user data;</li>
-    <li>use it for advertising, or to build user profiles for advertising;</li>
-    <li>transfer it to third parties, except as needed to provide the Service, to comply with law, or with the owner's explicit consent;</li>
-    <li>allow humans to read it, except with the owner's consent, for security reasons, to comply with law, or to fix a problem the owner reported.</li>
-  </ul>
+</header>
 
-  <h2>4. Service providers</h2>
-  <p>To run the assistant we use a small number of processors: Meta (Instagram and Messenger platforms) and SendPulse to receive and send messages, an AI model provider (via OpenRouter) to generate replies from the message and the shop's catalog, Google (Sheets) for the shop's data, and Telegram to alert the shop owner when a customer needs a human. Each receives only what is needed for its step.</p>
+<main id="top" class="wrap">
+  <article class="policy">
+    <h1>Privacy policy</h1>
+    <p class="date">Last updated: 14 November 2026</p>
 
-  <h2>5. Retention</h2>
-  <ul>
-    <li>Short conversation memory (the last few messages, so replies stay in context) is deleted automatically after 7 days.</li>
-    <li>Conversation logs stay in the shop's own spreadsheet, under the shop's control.</li>
-    <li>When a client stops the Service, we disconnect access and delete the data we hold for that shop within 30 days, unless the law requires otherwise.</li>
-  </ul>
+    <p>Keystone Automations ("we", "us") builds automations that process invoices, emails and leads for businesses. This policy explains what data the service handles, why, and how it is protected. It covers this website and the automations we install for our clients (the "Service").</p>
 
-  <h2>6. Security</h2>
-  <p>Access credentials are stored encrypted in our automation platform and are never shared. Access to client data is limited to what is needed to operate and support the Service.</p>
+    <h2>1. Who we are</h2>
+    <p>Keystone Automations is an independent automation service based in Algeria. Contact: <a href="mailto:keystone.flows@gmail.com">keystone.flows@gmail.com</a>.</p>
 
-  <h2>7. Your choices</h2>
-  <ul>
-    <li>Shop owners can revoke Google access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
-    <li>Anyone can ask us what data we hold about them, or ask us to delete it, by writing to <a href="mailto:keystone.flows@gmail.com">keystone.flows@gmail.com</a>. We reply within 30 days.</li>
-  </ul>
+    <h2>2. Data we handle</h2>
+    <ul>
+      <li><strong>Website form:</strong> the name, email, firm and message you send us. They reach our inbox through FormSubmit and are used only to reply to you.</li>
+      <li><strong>Invoices and documents:</strong> files our clients' automations process, and the fields read from them (supplier, dates, numbers, amounts, tax).</li>
+      <li><strong>Emails:</strong> for the email automation, the sender, subject and text of incoming emails, the category and reply produced, and a log row per email.</li>
+      <li><strong>Leads:</strong> for the lead automation, what a person types into the client's form (name, email, phone if asked, message) and the score given to it.</li>
+    </ul>
+    <p>The Service is not designed to collect payment card numbers, passwords or government ID numbers.</p>
 
-  <h2>8. Changes</h2>
-  <p>If we change this policy, we will update the date at the top of this page. Significant changes will be communicated to our clients directly.</p>
+    <h2>3. How we use Google user data</h2>
+    <div class="box">
+      <p>When a client connects Google services, the Service uses Google APIs only to:</p>
+      <ul>
+        <li><strong>Gmail:</strong> read new emails in the connected inbox, apply labels, create reply drafts and, where the client turns it on, send replies to simple questions;</li>
+        <li><strong>Google Drive:</strong> read new files in the folders the client chooses and move them to Processed or Review folders;</li>
+        <li><strong>Google Sheets:</strong> read the client's own reference sheets (for example an FAQ) and write log rows to the client's spreadsheets.</li>
+      </ul>
+      <p>We access only the inboxes, folders and spreadsheets used to run the Service. Google user data is used solely to provide the Service to the client who authorized it.</p>
+    </div>
+    <p>Keystone Automations' use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. We do not:</p>
+    <ul>
+      <li>sell Google user data;</li>
+      <li>use it for advertising, or to build profiles for advertising;</li>
+      <li>transfer it to third parties, except as needed to provide the Service, to comply with law, or with the client's explicit consent;</li>
+      <li>allow humans to read it, except with the client's consent, for security reasons, to comply with law, or to fix a problem the client reported.</li>
+    </ul>
+    <p>Google user data is not used to develop, improve or train generalized AI or machine learning models.</p>
+
+    <h2>4. Service providers</h2>
+    <p>To run the Service we use a small number of processors, each receiving only what its step needs: the automation platform (n8n, Make or Zapier, on the client's account where possible); an AI model provider reached through OpenRouter, to read documents and classify or draft emails; Google (Gmail, Drive, Sheets); Airtable and HubSpot when the client uses them; Telegram, to alert the client when something needs a human; and FormSubmit for this website's form.</p>
+
+    <h2>5. Retention</h2>
+    <ul>
+      <li>Processed results stay in the client's own spreadsheets, folders and tools, under the client's control.</li>
+      <li>Form messages are kept in our inbox only as long as needed to answer and follow up.</li>
+      <li>When a client stops the Service, we disconnect access and delete the data we hold for that client within 30 days, unless the law requires otherwise.</li>
+    </ul>
+
+    <h2>6. Security</h2>
+    <p>Access is granted by the client signing in to each tool, never by sharing passwords. Credentials are stored encrypted in the automation platform and are never shared. Access to client data is limited to what is needed to run and support the Service.</p>
+
+    <h2>7. Your choices</h2>
+    <ul>
+      <li>Clients can revoke Google access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+      <li>Anyone can ask what data we hold about them, or ask us to delete it, by writing to <a href="mailto:keystone.flows@gmail.com">keystone.flows@gmail.com</a>. We reply within 30 days.</li>
+    </ul>
+
+    <h2>8. Changes</h2>
+    <p>If this policy changes, the date at the top of this page changes with it. Significant changes are sent to clients directly.</p>
+  </article>
 </main>
-<footer><div class="wrap">© 2026 Keystone Automations · <a href="index.html">Home</a> · <a href="mailto:keystone.flows@gmail.com">keystone.flows@gmail.com</a></div></footer>
+
+<footer class="footer footer--dark ground-inverse">
+  <div class="wrap">
+    <div class="footer__legal">
+      <span>&copy; 2026 Keystone Automations &nbsp; <a href="index.html">Home</a> &nbsp; <a href="mailto:keystone.flows@gmail.com">Contact</a></span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
 </body>
 </html>
