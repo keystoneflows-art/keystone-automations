@@ -6,6 +6,7 @@
 <title>Keystone Automations: AI invoice data entry for accounting firms</title>
 <meta name="description" content="Invoices emailed as PDFs, scans or phone photos, read by AI, checked and written to your Google Sheet, Excel or Airtable. Free test on 10 of your invoices.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://keystoneflows-art.github.io/keystone-automations/">
 <meta property="og:title" content="Keystone Automations: AI invoice data entry">
 <meta property="og:description" content="PDFs, scans and phone photos read, checked and filed to your spreadsheet. Anything unclear is flagged, never guessed.">
 <meta property="og:image" content="https://keystoneflows-art.github.io/keystone-automations/share.jpg">
@@ -139,6 +140,7 @@
   .about-facts { grid-template-columns: repeat(3, 1fr); margin-top: var(--s-6, 32px); }
   .about-facts dd { font-size: 17px; }
   @media (max-width: 767px) { .about-facts { grid-template-columns: 1fr 1fr; } .about-facts div:last-child { grid-column: 1 / -1; } }
+  .about-facts { grid-template-columns: 1fr 1fr; } .about-facts div:last-child { grid-column: 1 / -1; }
   .ground-inverse .t-small.muted, .ground-inverse .footer__legal { color: var(--p-inv-muted); }
   .ground-inverse ::selection { background: #4c8dff; color: #07183a; }
   video:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 4px; }
@@ -164,11 +166,17 @@
     main > :is(section, .section):not(.hero) > .wrap, footer.closing > .wrap { height: auto; }
   }
   footer.closing .closing__cta { margin-bottom: var(--s-9, 64px); }
+  @media (max-width: 767px) {
+    main > :is(section, .section):not(.hero), footer.closing { min-height: 0; grid-template-rows: auto; }
+    main > :is(section, .section).g2m > .wrap, footer.closing.g2m > .wrap { grid-template-rows: auto auto; row-gap: 0; }
+    footer.closing .closing__cta { margin-bottom: 48px; }
+  }
   .faq__item:first-child, .faq__item:nth-child(2) { padding-top: 0; border-top: 0; }
   ::selection { background: #c9dafd; color: #07183a; }
   textarea { min-height: 120px; resize: vertical; }
   @media (prefers-reduced-motion: reduce) { .win .row-new td { animation: none; } }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Keystone Automations","url":"https://keystoneflows-art.github.io/keystone-automations/","description":"AI invoice data entry for accounting firms: PDFs, scans and phone photos read, checked and written to Google Sheets, Excel or Airtable.","email":"keystone.flows@gmail.com","areaServed":"GB","serviceType":"Invoice data entry automation"}</script>
 </head>
 <body>
 <!-- type: service (an automation consultancy: people are hired)
@@ -309,14 +317,14 @@
 
   <section class="section g2m" id="services" aria-labelledby="services-h">
     <div class="wrap">
-      <div class="section-head"><h2 id="services-h">Three automations. <span class="muted">Fixed prices, from $30.</span></h2></div>
+      <div class="section-head"><h2 id="services-h">Three automations. <span class="muted">One fixed price, set after your free test.</span></h2></div>
       <div class="grid grid--top fill" data-peek>
         <ul class="rows span-6">
-          <li data-peek-to="invoice" tabindex="0"><span class="rows__name">Invoice data entry<small>PDFs, scans and photos into your sheet, with math and duplicate checks</small></span><span class="rows__value">from $39</span></li>
-          <li data-peek-to="email" tabindex="0"><span class="rows__name">Email triage and replies<small>Sorts the inbox and answers simple questions from your own FAQ</small></span><span class="rows__value">from $30</span></li>
-          <li data-peek-to="lead" tabindex="0"><span class="rows__name">Lead capture and follow-up<small>Scores each form lead, adds it to HubSpot, follows up until they reply</small></span><span class="rows__value">from $35</span></li>
+          <li data-peek-to="invoice" tabindex="0"><span class="rows__name">Invoice data entry<small>PDFs, scans and photos into your sheet, with math and duplicate checks</small></span><span class="rows__value">Core service</span></li>
+          <li data-peek-to="email" tabindex="0"><span class="rows__name">Email triage and replies<small>Sorts the inbox and answers simple questions from your own FAQ</small></span><span class="rows__value">Add-on</span></li>
+          <li data-peek-to="lead" tabindex="0"><span class="rows__name">Lead capture and follow-up<small>Scores each form lead, adds it to HubSpot, follows up until they reply</small></span><span class="rows__value">Add-on</span></li>
         </ul>
-        <p class="services-more span-6"><a class="link" href="https://www.fiverr.com/medjd_benh" rel="noopener" target="_blank">Compare the packages on Fiverr</a></p>
+        <p class="services-more span-6"><a class="link" href="#contact">Request a free test</a></p>
         <div class="frame frame--fill span-6 start-7">
           <div class="peek-pane" data-peek-for="invoice">
             <div class="win" role="img" aria-label="Invoice log with filed, review and duplicate rows">
@@ -358,12 +366,12 @@
       <div class="span-5">
         <div class="section-head">
           <h2 id="about-h">Built to stop, not to guess.</h2>
-          <p>I am Mejd, an industrial risk engineer turned automation builder. I design every workflow around what goes wrong with real files, test it on yours, and hand over a short video.</p>
+          <p>I am Majd, an industrial risk engineer turned automation builder. I design every workflow around what goes wrong with real files, test it on yours, and hand over a short video.</p>
         </div>
         <dl class="about-facts">
           <div><dt>Background</dt><dd>Master's in industrial risk</dd></div>
           <div><dt>Languages</dt><dd>English, French, Arabic</dd></div>
-          <div><dt>Hire me on</dt><dd><a class="link" href="https://www.upwork.com/freelancers/~01124a833696475364" rel="noopener" target="_blank">Upwork</a> or <a class="link" href="https://www.fiverr.com/medjd_benh" rel="noopener" target="_blank">Fiverr</a></dd></div>
+          <div><dt>Email</dt><dd><a class="link" href="mailto:keystone.flows@gmail.com">keystone.flows@gmail.com</a></dd></div>
         </dl>
       </div>
       <ul class="rules span-6 start-7">
@@ -395,6 +403,8 @@
         <div class="faq__item"><h3>What if an invoice is read wrong?</h3><p>Totals are checked against subtotal and tax, and anything that fails goes to a Review folder with an alert.</p></div>
         <div class="faq__item" id="data"><h3>How is my Google data used?</h3><p>Only to read the files and emails the automation processes and write results to your own sheets. It is never sold or used for ads, and use of Google API data follows the <a class="link" href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener" target="_blank">Google API Services User Data Policy</a>, including Limited Use. Details in the <a class="link" href="privacy.html">privacy policy</a>.</p></div>
         <div class="faq__item"><h3>Can it write to Xero or QuickBooks?</h3><p>Not yet as a standard package. Google Sheets, Excel and Airtable are standard; other tools are quoted after the free test.</p></div>
+        <div class="faq__item"><h3>What does it cost?</h3><p>The test is free. After it, you get one fixed price for the setup, based on your volume and where the data goes. No surprise invoices.</p></div>
+        <div class="faq__item"><h3>What if we stop working together?</h3><p>The automation keeps running on your own accounts. You keep the workflow, the sheet and a short video showing how it works.</p></div>
       </div>
     </div>
   </section>
@@ -411,21 +421,22 @@
         <form class="form span-6 start-7" action="mailto:keystone.flows@gmail.com" method="post" enctype="text/plain" data-endpoint="https://formsubmit.co/ajax/keystone.flows@gmail.com" data-sent="Your free test request is in. I reply within one working day." novalidate>
           <input type="hidden" name="_subject" value="Free test request from the website">
           <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Thanks, your free test request is in. I reply within one working day with how to send the 10 invoices. Majd, Keystone Automations">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field"><label for="f-name">Name</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+            <input id="f-name" name="Name" type="text" autocomplete="name" required aria-describedby="f-name-err">
             <p class="field__error" id="f-name-err" hidden>Write your name.</p></div>
           <div class="field"><label for="f-email">Work email</label>
             <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
             <p class="field__error" id="f-email-err" hidden>Write an email address with an @, like name@firm.co.uk.</p></div>
           <div class="field"><label for="f-firm">Firm</label>
-            <input id="f-firm" name="firm" type="text" autocomplete="organization" aria-describedby="f-firm-err">
+            <input id="f-firm" name="Firm" type="text" autocomplete="organization" required aria-describedby="f-firm-err">
             <p class="field__error" id="f-firm-err" hidden>Write the name of your firm.</p></div>
           <div class="field"><label for="f-volume">Invoices a month</label>
-            <input id="f-volume" name="invoices_per_month" type="text" inputmode="numeric" autocomplete="off" aria-describedby="f-volume-err">
+            <input id="f-volume" name="Invoices a month" type="text" inputmode="numeric" autocomplete="off" aria-describedby="f-volume-err">
             <p class="field__error" id="f-volume-err" hidden>Write a rough number, like 300.</p></div>
           <div class="field field--full"><label for="f-msg">Where the data should go</label>
-            <textarea id="f-msg" name="message" rows="4" required aria-describedby="f-msg-err"></textarea>
+            <textarea id="f-msg" name="Setup" rows="4" required aria-describedby="f-msg-err"></textarea>
             <p class="field__error" id="f-msg-err" hidden>Write a line about your setup, like "a Google Sheet per client".</p></div>
           <div class="btn-row"><button class="btn btn--primary" type="submit">Request a free test</button></div>
           <p class="form__status" role="status" data-form-status></p>
@@ -441,7 +452,7 @@
         </div>
         <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="#how">How it works</a></li><li><a href="#demo">Demo</a></li><li><a href="#services">Services</a></li></ul></div>
         <div class="span-2 footer__col"><h3>Company</h3><ul><li><a href="#about">About</a></li><li><a href="#questions">Questions</a></li><li><a href="#data">Your data</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Hire</h3><ul><li><a href="https://www.upwork.com/freelancers/~01124a833696475364" rel="noopener" target="_blank">Upwork</a></li><li><a href="https://www.fiverr.com/medjd_benh" rel="noopener" target="_blank">Fiverr</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="#contact">Free test</a></li><li><a href="mailto:keystone.flows@gmail.com">Email</a></li></ul></div>
       </div>
       <div class="footer__legal">
         <span>&copy; 2026 Keystone Automations &nbsp; <a href="privacy.html">Privacy</a></span>
