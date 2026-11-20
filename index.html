@@ -466,5 +466,34 @@
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
 <script type="module" src="assets/moments/moments.js"></script>
+<script>
+/* Lead capture: send a copy of each valid "Request a free test" form to n8n.
+   FormSubmit (data-endpoint) still emails you, so a lead is never lost if n8n is offline. */
+(function () {
+  var N8N_WEBHOOK = 'https://climate-attain-dealer.ngrok-free.dev/webhook/lead-capture';
+  var form = document.querySelector('#contact form.form');
+  if (!form) return;
+  form.addEventListener('submit', function () {
+    if (!form.checkValidity()) return;                 // invalid: the page shows errors, nothing is sent
+    var f = form.elements;
+    if (f['_honey'] && f['_honey'].value) return;      // bot filled the hidden field: ignore
+    var v = function (n) { return f[n] ? String(f[n].value || '').trim() : ''; };
+    var lead = {
+      name: v('Name'),
+      email: v('email'),
+      firm: v('Firm'),
+      invoices_per_month: v('Invoices a month'),
+      message: 'Firm: ' + v('Firm') + ' | Invoices a month: ' + (v('Invoices a month') || 'not given') + ' | Setup: ' + v('Setup'),
+      source: 'keystone website'
+    };
+    fetch(N8N_WEBHOOK, {
+      method: 'POST',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1' },
+      body: JSON.stringify(lead)
+    }).catch(function () {});                          // never block the visitor
+  }, true);
+})();
+</script>
 </body>
 </html>
